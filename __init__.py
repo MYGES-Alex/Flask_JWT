@@ -68,5 +68,9 @@ def admin():
 def login_form():
     return render_template('login.html')
   
+@app.route("/test", methods=["GET"])
+def test_cookie():
+    return render_template("menu.html")
+
 if __name__ == "__main__":
   app.run(debug=True)

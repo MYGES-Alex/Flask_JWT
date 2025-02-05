@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Protégée</title>
+    <script>
+        async function checkProtectedRoute() {
+            try {
+                const response = await fetch("/protected", {
+                    method: "GET",
+                    credentials: "include"  // Envoie les cookies avec la requête
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    document.getElementById("message").innerText = "Accès autorisé : " + data.logged_in_as;
+                } else {
+                    document.getElementById("message").innerText = "Accès refusé : " + data.msg;
+                }
+            } catch (error) {
+                console.error("Erreur :", error);
+                document.getElementById("message").innerText = "Erreur lors de la vérification du cookie.";
+            }
+        }
+
+        window.onload = checkProtectedRoute;
+    </script>
+</head>
+<body>
+    <h2>Vérification des Cookies</h2>
+    <p id="message">Chargement...</p>
+    <br>
+    <a href="/login">Retour à la connexion</a>
+</body>
+</html>
