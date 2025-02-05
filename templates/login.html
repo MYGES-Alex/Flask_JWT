@@ -30,7 +30,14 @@
             });
 
             const data = await response.json();
-            alert(data.msg);
+
+            if (response.ok) {
+                if (confirm("Connexion réussie ! Voulez-vous tester les cookies ?")) {
+                    window.location.href = "/test_cookie";
+                }
+            } else {
+                alert("Échec de la connexion : " + data.msg);
+            }
         });
     </script>
 </body>
