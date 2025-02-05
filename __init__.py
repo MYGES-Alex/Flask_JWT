@@ -34,8 +34,8 @@ def login():
     password = data.get("password")
 
     users = {
-        "admin": {"password": "adminpass", "role": "admin"},
-        "user": {"password": "userpass", "role": "user"}
+        "admin": {"password": "admin", "role": "admin"},
+        "test": {"password": "test", "role": "user"}
     }
 
     user = users.get(username)
